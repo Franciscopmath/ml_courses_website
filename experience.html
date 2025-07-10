@@ -10,6 +10,141 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ml_courses_website/static/styles/logos_styles.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --text-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23667eea" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            z-index: -1;
+        }
+        
+        .text-gradient {
+            background: var(--text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #495057;
+            margin-bottom: 1rem;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+        
+        .experience-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary-gradient);
+        }
+        
+        .project-item {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-gradient);
+        }
+        
+        .project-title {
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-badge {
+            background: rgba(102, 126, 234, 0.1);
+            color: #495057;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            margin: 0.25rem;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,8 +159,8 @@
               <a class="nav-link" aria-current="page" href="/ml_courses_website/index.html">Home</a>
               <a class="nav-link" aria-current="page" href="/ml_courses_website/about.html">About</a>
               <a class="nav-link active" href="/ml_courses_website/experience.html">Experience</a>
-              <a class="nav-link" href="#">Courses</a>
-              <a class="nav-link" href="#">Projects</a>
+              <a class="nav-link" href="/ml_courses_website/courses.html">Courses</a>
+              <a class="nav-link" href="/ml_courses_website/projects.html">Projects</a>
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Publications</a>
               <a class="nav-link" href="/ml_courses_website/contact.html">Contact</a>
               
@@ -44,16 +179,18 @@
         </div>
       </nav>
       
-      <div class="p-5 text-center bg-image" style="background-image: url('/ml_courses_website/assets/Teselación-Penrose-768x576.jpg'); height: 300px;">
+      <div class="hero-section">
+        <div class="container text-center">
+          <h1 class="page-title">Professional <span class="text-gradient">Experience</span></h1>
+          <p class="page-subtitle">Over 10 years of experience in data science, machine learning, and academia</p>
+        </div>
       </div>
       
       <div class="container p-4">
-        <h1 class="mb-4 text-center">Professional Experience</h1>
-        <p class="lead text-center mb-5">Over 10 years of experience in data science, machine learning, and academia</p>
         
         <!-- Senior Expert Data Scientist - Coppel -->
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body">
+        <div class="experience-card">
+          <div class="card-body p-4">
             <div class="row">
               <div class="col-md-10">
                 <h3 class="card-title text-primary mb-1">Senior Expert Data Scientist</h3>
@@ -116,8 +253,8 @@
         </div>
         
         <!-- Data Scientist - Consejo de la Judicatura -->
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body">
+        <div class="experience-card">
+          <div class="card-body p-4">
             <div class="row">
               <div class="col-md-10">
                 <h3 class="card-title text-primary mb-1">Data Scientist</h3>
@@ -151,8 +288,8 @@
         </div>
         
         <!-- Professor - UNAM -->
-        <div class="card mb-4 shadow-sm">
-          <div class="card-body">
+        <div class="experience-card">
+          <div class="card-body p-4">
             <div class="row">
               <div class="col-md-10">
                 <h3 class="card-title text-primary mb-1">Professor</h3>
@@ -199,8 +336,8 @@
         </div>
         
         <!-- Skills Summary -->
-        <div class="card mt-5 shadow-sm">
-          <div class="card-body">
+        <div class="experience-card mt-5">
+          <div class="card-body p-4">
             <h4 class="card-title text-primary mb-4">Career Highlights</h4>
             <div class="row">
               <div class="col-md-4">
