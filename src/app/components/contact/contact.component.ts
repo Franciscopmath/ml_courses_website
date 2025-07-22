@@ -131,7 +131,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
   `,
   styles: [`
     .hero-section {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      background: linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(15, 23, 42, 0.12) 100%);
       min-height: 40vh;
       display: flex;
       align-items: center;
@@ -165,7 +165,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -229,7 +229,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     }
 
     .contact-icon {
-      color: #667eea;
+      color: #475569;
       font-size: 2rem;
       width: 2rem;
       height: 2rem;
@@ -288,7 +288,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     .cv-icon {
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      background: linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(15, 23, 42, 0.12) 100%);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -300,7 +300,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       font-size: 2rem;
       width: 2rem;
       height: 2rem;
-      color: #667eea;
+      color: #475569;
     }
 
     .cv-details h4 {
@@ -344,7 +344,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       align-items: center;
       gap: 0.5rem;
       padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
       color: white;
       text-decoration: none;
       border-radius: 8px;
@@ -426,7 +426,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     }
 
     .expertise-item mat-icon {
-      color: #667eea;
+      color: #475569;
     }
 
 

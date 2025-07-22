@@ -200,7 +200,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
                 <mat-card class="education-card">
                   <mat-card-header>
                     <mat-icon mat-card-avatar>school</mat-icon>
-                    <mat-card-title>M.S. in Science</mat-card-title>
+                    <mat-card-title>M.S. in Mathematics</mat-card-title>
                     <mat-card-subtitle>National Autonomous University of Mexico (UNAM)</mat-card-subtitle>
                   </mat-card-header>
                   <mat-card-content>
@@ -301,7 +301,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
   `,
   styles: [`
     .hero-section {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      background: linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(15, 23, 42, 0.12) 100%);
       min-height: 40vh;
       display: flex;
       align-items: center;
@@ -335,7 +335,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -450,7 +450,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       left: 0;
       width: 100%;
       height: 4px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
     }
 
     .skill-category:hover {
@@ -484,7 +484,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       top: 0;
       bottom: 0;
       width: 4px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
     }
 
     .education-card:hover {

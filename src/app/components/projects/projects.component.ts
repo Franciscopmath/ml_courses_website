@@ -108,7 +108,7 @@ interface Project {
   `,
   styles: [`
     .hero-section {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      background: linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(15, 23, 42, 0.12) 100%);
       min-height: 40vh;
       display: flex;
       align-items: center;
@@ -142,7 +142,7 @@ interface Project {
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -181,7 +181,7 @@ interface Project {
     }
 
     .filter-group mat-button-toggle.mat-button-toggle-checked {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
       color: white;
     }
 
@@ -207,7 +207,7 @@ interface Project {
       left: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
     }
 
     .project-card:hover {
@@ -223,7 +223,7 @@ interface Project {
     }
 
     .project-category-badge {
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
       color: white;
       padding: 0.5rem 1rem;
       border-radius: 20px;
