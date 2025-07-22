@@ -301,7 +301,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
   `,
   styles: [`
     .hero-section {
-      background: linear-gradient(135deg, rgba(71, 85, 105, 0.08) 0%, rgba(15, 23, 42, 0.12) 100%);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
       min-height: 40vh;
       display: flex;
       align-items: center;
@@ -335,7 +335,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
+      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -450,7 +450,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       left: 0;
       width: 100%;
       height: 4px;
-      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
+      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
     }
 
     .skill-category:hover {
@@ -484,7 +484,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       top: 0;
       bottom: 0;
       width: 4px;
-      background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
+      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
     }
 
     .education-card:hover {
