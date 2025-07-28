@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-contact',
@@ -9,7 +10,8 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
   imports: [
     CommonModule, 
     MatIconModule,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   template: `
     <app-navbar></app-navbar>
@@ -38,7 +40,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
                 <mat-icon class="contact-icon">email</mat-icon>
                 <div class="contact-details">
                   <h4>Email</h4>
-                  <p>franciscoperezc@gmail.com</p>
+                  <p>franciscoperezc&#64;gmail.com</p>
                 </div>
               </div>
               
@@ -46,7 +48,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
                 <mat-icon class="contact-icon">phone</mat-icon>
                 <div class="contact-details">
                   <h4>Phone</h4>
-                  <p>Available upon request</p>
+                  <p>+52 55 18 35 52 87</p>
                 </div>
               </div>
               
@@ -124,14 +126,72 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
                 </div>
               </div>
             </div>
+
+            <!-- Location Map -->
+            <div class="location-section">
+              <h3>My Location</h3>
+              <div class="map-container">
+                <div class="location-card">
+                  <div class="location-info">
+                    <div class="location-header">
+                      <mat-icon class="location-icon">place</mat-icon>
+                      <div class="location-text">
+                        <h4>Mexico City, Mexico</h4>
+                        <p>Available for remote collaboration worldwide</p>
+                      </div>
+                    </div>
+                    <div class="location-stats">
+                      <div class="stat-item">
+                        <mat-icon>schedule</mat-icon>
+                        <span>GMT-6 (CST)</span>
+                      </div>
+                      <div class="stat-item">
+                        <mat-icon>language</mat-icon>
+                        <span>Spanish & English</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="interactive-map">
+                    <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5346326853073!2d-99.16440732580765!3d19.432607881837243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f96c2b0b7e19%3A0x7d1bd38e6f8b9a9e!2sCiudad%20de%20M%C3%A9xico%2C%20CDMX%2C%20Mexico!5e0!3m2!1sen!2sus!4v1729875600000!5m2!1sen!2sus"
+                      loading="lazy" 
+                      referrerpolicy="no-referrer-when-downgrade"
+                      title="Mexico City Location">
+                    </iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/525518355287" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+      <mat-icon>message</mat-icon>
+    </a>
+
+    <app-footer></app-footer>
   `,
   styles: [`
+    :host {
+      --color-primary: #00C9A7;
+      --color-secondary: #00BFA6;
+      --color-accent: #20E3C7;
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8FFFE;
+      --bg-dark: #2A2A2A;
+      --text-primary: #2D3748;
+      --text-secondary: #718096;
+      --text-light: #FFFFFF;
+      --border-color: #E2E8F0;
+      --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      --gradient-hero: linear-gradient(135deg, rgba(0, 201, 167, 0.1) 0%, rgba(0, 191, 166, 0.1) 100%);
+    }
+
     .hero-section {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+      background: var(--gradient-hero);
       min-height: 40vh;
       display: flex;
       align-items: center;
@@ -146,7 +206,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23667eea" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%2300C9A7" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
       z-index: -1;
     }
 
@@ -159,13 +219,13 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     .page-title {
       font-size: 2.5rem;
       font-weight: 700;
-      color: #495057;
+      color: var(--text-primary);
       text-align: center;
       margin-bottom: 1rem;
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
+      background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -173,14 +233,14 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
     .page-subtitle {
       font-size: 1.2rem;
-      color: #6c757d;
+      color: var(--text-secondary);
       text-align: center;
       margin-bottom: 2rem;
     }
 
     .content-section {
       padding: 4rem 0;
-      background: rgba(255, 255, 255, 0.9);
+      background: var(--bg-primary);
     }
 
     .contact-content {
@@ -195,14 +255,14 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     }
 
     .contact-info h2 {
-      color: #495057;
+      color: var(--text-primary);
       font-weight: 700;
       margin-bottom: 1.5rem;
       font-size: 2rem;
     }
 
     .intro-text {
-      color: #6c757d;
+      color: var(--text-secondary);
       line-height: 1.8;
       margin-bottom: 2.5rem;
       font-size: 1.1rem;
@@ -218,31 +278,34 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       gap: 1rem;
       margin-bottom: 2rem;
       padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.8);
+      background: var(--bg-primary);
       border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
     }
 
     .contact-method:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 201, 167, 0.15);
+      border-color: var(--color-primary);
     }
 
     .contact-icon {
-      color: #2563eb;
+      color: var(--color-primary);
       font-size: 2rem;
       width: 2rem;
       height: 2rem;
     }
 
     .contact-details h4 {
-      color: #495057;
+      color: var(--text-primary);
       margin: 0 0 0.5rem 0;
       font-weight: 600;
     }
 
     .contact-details p {
-      color: #6c757d;
+      color: var(--text-secondary);
       margin: 0;
     }
 
@@ -252,19 +315,20 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
     .cv-section h3,
     .social-section h3,
-    .expertise-section h3 {
-      color: #495057;
+    .expertise-section h3,
+    .location-section h3 {
+      color: var(--text-primary);
       font-weight: 600;
       margin-bottom: 1.5rem;
       font-size: 1.3rem;
     }
 
     .cv-download-card {
-      background: white;
+      background: var(--bg-primary);
       border-radius: 15px;
       padding: 1.5rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(102, 126, 234, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
       transition: all 0.3s ease;
       display: flex;
       justify-content: space-between;
@@ -274,8 +338,8 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
     .cv-download-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-      border-color: rgba(102, 126, 234, 0.2);
+      box-shadow: 0 15px 40px rgba(0, 201, 167, 0.15);
+      border-color: var(--color-primary);
     }
 
     .cv-info {
@@ -288,7 +352,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     .cv-icon {
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+      background: var(--gradient-hero);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -300,11 +364,11 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       font-size: 2rem;
       width: 2rem;
       height: 2rem;
-      color: #2563eb;
+      color: var(--color-primary);
     }
 
     .cv-details h4 {
-      color: #495057;
+      color: var(--text-primary);
       font-size: 1.1rem;
       font-weight: 600;
       margin: 0 0 0.5rem 0;
@@ -312,7 +376,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     }
 
     .cv-details p {
-      color: #6c757d;
+      color: var(--text-secondary);
       font-size: 0.95rem;
       line-height: 1.5;
       margin: 0 0 0.75rem 0;
@@ -335,7 +399,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     }
 
     .file-updated {
-      color: #6c757d;
+      color: var(--text-secondary);
       font-size: 0.85rem;
     }
 
@@ -344,22 +408,22 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       align-items: center;
       gap: 0.5rem;
       padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
-      color: white;
+      background: var(--gradient-primary);
+      color: var(--text-light);
       text-decoration: none;
       border-radius: 8px;
       font-weight: 600;
       font-size: 0.95rem;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 201, 167, 0.3);
       transition: all 0.3s ease;
       flex-shrink: 0;
     }
 
     .cv-download-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 201, 167, 0.4);
       text-decoration: none;
-      color: white;
+      color: var(--text-light);
     }
 
     .cv-download-btn mat-icon {
@@ -379,33 +443,38 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       align-items: center;
       gap: 0.5rem;
       padding: 0.75rem 1.5rem;
-      background: white;
+      background: var(--bg-primary);
       border-radius: 25px;
       text-decoration: none;
-      color: #495057;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 3px 10px rgba(0, 201, 167, 0.1);
       transition: all 0.3s ease;
       font-weight: 500;
     }
 
     .social-link:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 20px rgba(0, 201, 167, 0.15);
+      border-color: var(--color-primary);
     }
 
     .social-link.linkedin:hover {
       background: #0077b5;
-      color: white;
+      color: var(--text-light);
+      border-color: #0077b5;
     }
 
     .social-link.twitter:hover {
       background: #1da1f2;
-      color: white;
+      color: var(--text-light);
+      border-color: #1da1f2;
     }
 
     .social-link.github:hover {
-      background: #333;
-      color: white;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      border-color: var(--bg-dark);
     }
 
     .expertise-list {
@@ -419,45 +488,246 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       align-items: center;
       gap: 0.75rem;
       padding: 1rem;
-      background: rgba(102, 126, 234, 0.05);
+      background: var(--gradient-hero);
       border-radius: 8px;
-      color: #495057;
+      color: var(--text-primary);
       font-weight: 500;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .expertise-item:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-1px);
     }
 
     .expertise-item mat-icon {
-      color: #2563eb;
+      color: var(--color-primary);
     }
 
+    .location-section {
+      margin-bottom: 2rem;
+    }
+
+    .location-card {
+      background: var(--bg-primary);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .location-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(0, 201, 167, 0.15);
+      border-color: var(--color-primary);
+    }
+
+    .location-info {
+      padding: 2rem;
+      background: var(--gradient-hero);
+    }
+
+    .location-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .location-icon {
+      color: var(--color-primary);
+      font-size: 2rem;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .location-text h4 {
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem 0;
+    }
+
+    .location-text p {
+      color: var(--text-secondary);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .location-stats {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .stat-item mat-icon {
+      color: var(--color-primary);
+      font-size: 1.2rem;
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    .interactive-map {
+      height: 250px;
+      position: relative;
+    }
+
+    .interactive-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(20%) contrast(1.1);
+      transition: filter 0.3s ease;
+    }
+
+    .interactive-map:hover iframe {
+      filter: grayscale(0%) contrast(1.2);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      text-decoration: none;
+      animation: whatsapp-pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+      text-decoration: none;
+    }
+
+    .whatsapp-float mat-icon {
+      color: white;
+      font-size: 1.8rem;
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+
+    @keyframes whatsapp-pulse {
+      0% {
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+      }
+      50% {
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5), 0 0 0 10px rgba(37, 211, 102, 0.1);
+      }
+      100% {
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+      }
+    }
 
     @media (max-width: 768px) {
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .location-stats {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
       .cv-download-card {
         flex-direction: column;
         text-align: center;
         gap: 1.5rem;
+        padding: 1.5rem 1rem;
       }
 
       .cv-info {
         flex-direction: column;
         text-align: center;
         gap: 1rem;
+        width: 100%;
+      }
+
+      .cv-icon {
+        width: 50px;
+        height: 50px;
+        align-self: center;
+      }
+
+      .cv-details {
+        width: 100%;
+      }
+
+      .cv-details h4 {
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+
+      .cv-details p {
+        font-size: 0.9rem;
+        line-height: 1.4;
       }
 
       .cv-meta {
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
       }
 
       .cv-download-btn {
-        align-self: stretch;
+        width: 100%;
         justify-content: center;
+        padding: 1rem;
+        font-size: 1rem;
       }
 
       .social-links {
         flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .social-link {
+        justify-content: center;
+        padding: 1rem;
       }
 
       .expertise-list {
         grid-template-columns: 1fr;
+      }
+
+      .expertise-item {
+        padding: 1rem 0.75rem;
+      }
+
+      .contact-method {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+      }
+
+      .contact-icon {
+        align-self: center;
+      }
+
+      .interactive-map {
+        height: 200px;
+      }
+
+      .location-info {
+        padding: 1.5rem;
       }
 
       .content-section {
@@ -466,6 +736,19 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
       .container {
         padding: 0 1rem;
+      }
+
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 15px;
+        right: 15px;
+      }
+
+      .whatsapp-float mat-icon {
+        font-size: 1.6rem;
+        width: 1.6rem;
+        height: 1.6rem;
       }
     }
   `]

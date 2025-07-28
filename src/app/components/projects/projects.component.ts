@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 interface Project {
   id: number;
@@ -30,7 +31,8 @@ interface Project {
     MatButtonModule, 
     MatIconModule, 
     MatButtonToggleModule,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   template: `
     <app-navbar></app-navbar>
@@ -105,10 +107,27 @@ interface Project {
         </div>
       </div>
     </div>
+
+    <app-footer></app-footer>
   `,
   styles: [`
+    :host {
+      --color-primary: #00C9A7;
+      --color-secondary: #00BFA6;
+      --color-accent: #20E3C7;
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8FFFE;
+      --bg-dark: #2A2A2A;
+      --text-primary: #2D3748;
+      --text-secondary: #718096;
+      --text-light: #FFFFFF;
+      --border-color: #E2E8F0;
+      --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      --gradient-hero: linear-gradient(135deg, rgba(0, 201, 167, 0.1) 0%, rgba(0, 191, 166, 0.1) 100%);
+    }
+
     .hero-section {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+      background: var(--gradient-hero);
       min-height: 40vh;
       display: flex;
       align-items: center;
@@ -123,7 +142,7 @@ interface Project {
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23667eea" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%2300C9A7" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
       z-index: -1;
     }
 
@@ -136,13 +155,13 @@ interface Project {
     .page-title {
       font-size: 2.5rem;
       font-weight: 700;
-      color: #495057;
+      color: var(--text-primary);
       text-align: center;
       margin-bottom: 1rem;
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
+      background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -150,14 +169,14 @@ interface Project {
 
     .page-subtitle {
       font-size: 1.2rem;
-      color: #6c757d;
+      color: var(--text-secondary);
       text-align: center;
       margin-bottom: 2rem;
     }
 
     .content-section {
       padding: 4rem 0;
-      background: rgba(255, 255, 255, 0.9);
+      background: var(--bg-primary);
     }
 
     .filter-section {
@@ -167,9 +186,10 @@ interface Project {
     }
 
     .filter-group {
-      background: white;
+      background: var(--bg-primary);
       border-radius: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
       overflow: hidden;
     }
 
@@ -178,11 +198,17 @@ interface Project {
       padding: 0.75rem 1.5rem;
       font-weight: 600;
       transition: all 0.3s ease;
+      color: var(--text-primary);
     }
 
     .filter-group mat-button-toggle.mat-button-toggle-checked {
-      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
-      color: white;
+      background: var(--gradient-primary);
+      color: var(--text-light);
+    }
+
+    .filter-group mat-button-toggle:hover:not(.mat-button-toggle-checked) {
+      background: var(--gradient-hero);
+      color: var(--color-primary);
     }
 
     .projects-grid {
@@ -194,10 +220,12 @@ interface Project {
     .project-card {
       position: relative;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
       overflow: hidden;
       margin-bottom: 2rem;
+      background: var(--bg-primary);
     }
 
     .project-card::before {
@@ -207,11 +235,13 @@ interface Project {
       left: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
+      background: var(--gradient-primary);
     }
 
     .project-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 201, 167, 0.15);
+      border-color: var(--color-primary);
     }
 
     .header-content {
@@ -223,8 +253,8 @@ interface Project {
     }
 
     .project-category-badge {
-      background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
-      color: white;
+      background: var(--gradient-primary);
+      color: var(--text-light);
       padding: 0.5rem 1rem;
       border-radius: 20px;
       font-size: 0.8rem;
@@ -232,10 +262,11 @@ interface Project {
       white-space: nowrap;
       flex-shrink: 0;
       align-self: flex-start;
+      box-shadow: 0 2px 8px rgba(0, 201, 167, 0.3);
     }
 
     .project-title {
-      color: #495057;
+      color: var(--text-primary);
       font-weight: 700;
       font-size: 1.2rem;
       margin: 0;
@@ -250,7 +281,7 @@ interface Project {
     }
 
     .project-description {
-      color: #6c757d;
+      color: var(--text-secondary);
       line-height: 1.6;
       margin-bottom: 1.5rem;
       font-size: 1rem;
@@ -261,11 +292,19 @@ interface Project {
     }
 
     .impact-chip {
-      background: rgba(76, 175, 80, 0.1);
-      color: #2e7d32;
+      background: rgba(0, 201, 167, 0.1);
+      color: var(--color-secondary);
       font-size: 0.85rem;
       font-weight: 600;
       margin: 0.25rem;
+      border: 1px solid rgba(0, 201, 167, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .impact-chip:hover {
+      background: var(--color-primary);
+      color: var(--text-light);
+      border-color: var(--color-primary);
     }
 
     .tech-section {
@@ -273,27 +312,35 @@ interface Project {
     }
 
     .tech-section h4 {
-      color: #495057;
+      color: var(--text-primary);
       font-size: 1rem;
       margin-bottom: 0.5rem;
       font-weight: 600;
     }
 
     .tech-chip {
-      background: rgba(102, 126, 234, 0.1);
-      color: #495057;
+      background: var(--gradient-hero);
+      color: var(--text-primary);
       font-size: 0.85rem;
       margin: 0.25rem;
+      border: 1px solid rgba(0, 201, 167, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .tech-chip:hover {
+      background: var(--color-accent);
+      color: var(--text-light);
+      border-color: var(--color-accent);
     }
 
     .features-section p {
-      color: #6c757d;
+      color: var(--text-secondary);
       line-height: 1.6;
       margin-bottom: 0.5rem;
     }
 
     .features-section strong {
-      color: #495057;
+      color: var(--text-primary);
     }
 
     @media (max-width: 768px) {

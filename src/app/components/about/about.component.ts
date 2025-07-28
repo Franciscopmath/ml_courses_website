@@ -5,11 +5,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatChipsModule, MatIconModule, MatTabsModule, NavbarComponent],
+  imports: [CommonModule, MatCardModule, MatChipsModule, MatIconModule, MatTabsModule, NavbarComponent, FooterComponent],
   template: `
     <app-navbar></app-navbar>
     
@@ -298,10 +299,27 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
         </mat-tab-group>
       </div>
     </div>
+
+    <app-footer></app-footer>
   `,
   styles: [`
+    :host {
+      --color-primary: #00C9A7;
+      --color-secondary: #00BFA6;
+      --color-accent: #20E3C7;
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8FFFE;
+      --bg-dark: #2A2A2A;
+      --text-primary: #2D3748;
+      --text-secondary: #718096;
+      --text-light: #FFFFFF;
+      --border-color: #E2E8F0;
+      --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      --gradient-hero: linear-gradient(135deg, rgba(0, 201, 167, 0.1) 0%, rgba(0, 191, 166, 0.1) 100%);
+    }
+
     .hero-section {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+      background: var(--gradient-hero);
       min-height: 40vh;
       display: flex;
       align-items: center;
@@ -316,7 +334,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23667eea" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%2300C9A7" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
       z-index: -1;
     }
 
@@ -329,13 +347,13 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     .page-title {
       font-size: 2.5rem;
       font-weight: 700;
-      color: #495057;
+      color: var(--text-primary);
       text-align: center;
       margin-bottom: 1rem;
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
+      background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -343,21 +361,26 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
     .page-subtitle {
       font-size: 1.2rem;
-      color: #6c757d;
+      color: var(--text-secondary);
       text-align: center;
       margin-bottom: 2rem;
     }
 
     .content-section {
       padding: 4rem 0;
-      background: rgba(255, 255, 255, 0.9);
+      background: var(--bg-primary);
     }
 
     .main-tabs {
-      background: white;
+      background: var(--bg-primary);
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
       overflow: hidden;
+    }
+
+    .main-tabs:hover {
+      box-shadow: 0 15px 40px rgba(0, 201, 167, 0.15);
     }
 
     .tab-content {
@@ -371,7 +394,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     }
 
     .bio-section h2 {
-      color: #495057;
+      color: var(--text-primary);
       font-weight: 700;
       margin-bottom: 1.5rem;
     }
@@ -379,13 +402,13 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     .lead {
       font-size: 1.2rem;
       font-weight: 500;
-      color: #495057;
+      color: var(--text-primary);
       margin-bottom: 1.5rem;
     }
 
     .bio-section p {
       line-height: 1.8;
-      color: #6c757d;
+      color: var(--text-secondary);
       margin-bottom: 1.5rem;
     }
 
@@ -397,12 +420,16 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
     .info-card {
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      background: var(--bg-primary);
     }
 
     .info-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 201, 167, 0.15);
+      border-color: var(--color-primary);
     }
 
     .info-card ul {
@@ -412,9 +439,10 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
     .info-card li {
       padding: 0.5rem 0;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid var(--border-color);
       position: relative;
       padding-left: 1.5rem;
+      color: var(--text-secondary);
     }
 
     .info-card li:last-child {
@@ -423,7 +451,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
     .info-card li::before {
       content: '•';
-      color: #667eea;
+      color: var(--color-primary);
       font-weight: bold;
       position: absolute;
       left: 0;
@@ -437,10 +465,18 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
     .skill-category {
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      background: var(--bg-primary);
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 201, 167, 0.15);
+      border-color: var(--color-primary);
     }
 
     .skill-category::before {
@@ -450,17 +486,21 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       left: 0;
       width: 100%;
       height: 4px;
-      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
-    }
-
-    .skill-category:hover {
-      transform: translateY(-5px);
+      background: var(--gradient-primary);
     }
 
     .skill-category mat-chip {
       margin: 0.25rem;
-      background: rgba(102, 126, 234, 0.1);
-      color: #495057;
+      background: var(--gradient-hero);
+      color: var(--text-primary);
+      border: 1px solid rgba(0, 201, 167, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .skill-category mat-chip:hover {
+      background: var(--color-primary);
+      color: var(--text-light);
+      border-color: var(--color-primary);
     }
 
     .education-timeline {
@@ -471,10 +511,12 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 
     .education-card {
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      background: var(--bg-primary);
     }
 
     .education-card::before {
@@ -484,11 +526,13 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
       top: 0;
       bottom: 0;
       width: 4px;
-      background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
+      background: var(--gradient-primary);
     }
 
     .education-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 201, 167, 0.15);
+      border-color: var(--color-primary);
     }
 
     .additional-grid {

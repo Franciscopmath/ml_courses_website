@@ -5,12 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 import { AnimationService } from '../../services/animation.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, MatCardModule, MatChipsModule, NavbarComponent],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatCardModule, MatChipsModule, NavbarComponent, FooterComponent],
   template: `
     <app-navbar></app-navbar>
     
@@ -62,7 +63,7 @@ import { AnimationService } from '../../services/animation.service';
             <div class="profile-card">
               <img src="assets/perfil.png" alt="Francisco Perez Carbajal" class="profile-image">
               <div class="profile-overlay">
-                <div class="tech-badge">MS in Data Science</div>
+                <div class="tech-badge">M.S. in Mathematics</div>
               </div>
             </div>
             <div class="floating-elements">
@@ -139,14 +140,31 @@ import { AnimationService } from '../../services/animation.service';
         </div>
       </div>
     </section>
+
+    <app-footer></app-footer>
   `,
   styles: [`
+    :host {
+      --color-primary: #00C9A7;
+      --color-secondary: #00BFA6;
+      --color-accent: #20E3C7;
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8FFFE;
+      --bg-dark: #2A2A2A;
+      --text-primary: #2D3748;
+      --text-secondary: #718096;
+      --text-light: #FFFFFF;
+      --border-color: #E2E8F0;
+      --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      --gradient-hero: linear-gradient(135deg, rgba(0, 201, 167, 0.1) 0%, rgba(0, 191, 166, 0.1) 100%);
+    }
+
     .hero-section {
       position: relative;
       min-height: calc(100vh - 80px);
       display: flex;
       align-items: center;
-      background: var(--neutral-50);
+      background: var(--bg-secondary);
       overflow: hidden;
     }
 
@@ -156,8 +174,8 @@ import { AnimationService } from '../../services/animation.service';
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+      background: radial-gradient(circle at 30% 20%, rgba(0, 201, 167, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(0, 191, 166, 0.05) 0%, transparent 50%);
       z-index: 0;
     }
 
@@ -166,26 +184,26 @@ import { AnimationService } from '../../services/animation.service';
       z-index: 1;
       max-width: 1200px;
       margin: 0 auto;
-      padding: var(--space-3xl) var(--space-xl);
+      padding: 3rem 2rem;
       display: grid;
       grid-template-columns: 1fr 400px;
-      gap: var(--space-3xl);
+      gap: 3rem;
       align-items: center;
     }
 
     .status-indicator {
-      margin-bottom: var(--space-xl);
+      margin-bottom: 2rem;
     }
 
     .availability-badge {
       display: inline-flex;
       align-items: center;
-      gap: var(--space-sm);
-      background: var(--success-50);
-      color: var(--success-700);
-      padding: var(--space-sm) var(--space-lg);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--success-200);
+      gap: 0.5rem;
+      background: rgba(0, 201, 167, 0.1);
+      color: var(--color-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 201, 167, 0.2);
       font-size: 0.875rem;
       font-weight: 500;
     }
@@ -193,7 +211,7 @@ import { AnimationService } from '../../services/animation.service';
     .status-dot {
       width: 8px;
       height: 8px;
-      background: var(--success-500);
+      background: var(--color-primary);
       border-radius: 50%;
       animation: gentle-pulse 2s ease-in-out infinite;
     }
@@ -207,28 +225,28 @@ import { AnimationService } from '../../services/animation.service';
       font-size: 3.5rem;
       font-weight: 700;
       line-height: 1.1;
-      color: var(--neutral-900);
-      margin-bottom: var(--space-lg);
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
     }
 
     .hero-subtitle {
       font-size: 1.5rem;
       font-weight: 400;
-      color: var(--primary-600);
+      color: var(--color-primary);
       display: block;
     }
 
     .hero-description {
       font-size: 1.125rem;
       line-height: 1.7;
-      color: var(--neutral-700);
-      margin-bottom: var(--space-2xl);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
     }
 
     .key-metrics {
       display: flex;
-      gap: var(--space-2xl);
-      margin-bottom: var(--space-2xl);
+      gap: 2rem;
+      margin-bottom: 2rem;
     }
 
     .metric {
@@ -240,56 +258,55 @@ import { AnimationService } from '../../services/animation.service';
     .metric-number {
       font-size: 2rem;
       font-weight: 700;
-      color: var(--primary-600);
+      color: var(--color-primary);
       line-height: 1;
     }
 
     .metric-label {
       font-size: 0.875rem;
-      color: var(--neutral-600);
+      color: var(--text-secondary);
       font-weight: 500;
-      margin-top: var(--space-xs);
+      margin-top: 0.5rem;
     }
 
     .cta-buttons {
       display: flex;
-      gap: var(--space-md);
+      gap: 1rem;
     }
 
     .btn-primary {
-      background: var(--primary-600);
-      color: white;
-      padding: var(--space-md) var(--space-2xl);
+      background: var(--gradient-primary);
+      color: var(--text-light);
+      padding: 1rem 2rem;
       font-size: 1rem;
       font-weight: 600;
-      border-radius: var(--radius-md);
+      border-radius: 8px;
       border: none;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 201, 167, 0.3);
+      transition: all 0.3s ease;
     }
 
     .btn-primary:hover {
-      background: var(--primary-700);
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 201, 167, 0.4);
     }
 
     .btn-secondary {
-      color: var(--neutral-700);
-      border: 1px solid var(--neutral-300);
-      padding: var(--space-md) var(--space-2xl);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 1rem 2rem;
       font-size: 1rem;
       font-weight: 600;
-      border-radius: var(--radius-md);
-      background: white;
-      transition: all 0.2s ease;
+      border-radius: 8px;
+      background: var(--bg-primary);
+      transition: all 0.3s ease;
     }
 
     .btn-secondary:hover {
-      background: var(--neutral-50);
-      border-color: var(--neutral-400);
+      background: var(--bg-secondary);
+      border-color: var(--color-primary);
       transform: translateY(-1px);
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 4px 15px rgba(0, 201, 167, 0.1);
     }
 
     .hero-visual {
@@ -306,36 +323,42 @@ import { AnimationService } from '../../services/animation.service';
 
     .profile-card {
       position: relative;
-      background: white;
-      border-radius: var(--radius-xl);
-      padding: var(--space-lg);
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--neutral-200);
+      background: var(--bg-primary);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 201, 167, 0.1);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 80px rgba(0, 201, 167, 0.15);
     }
 
     .profile-image {
       width: 100%;
       height: auto;
-      border-radius: var(--radius-lg);
+      border-radius: 12px;
       display: block;
     }
 
     .profile-overlay {
       position: absolute;
-      bottom: var(--space-lg);
-      left: var(--space-lg);
-      right: var(--space-lg);
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
     }
 
     .tech-badge {
-      background: var(--primary-600);
-      color: white;
-      padding: var(--space-sm) var(--space-md);
-      border-radius: var(--radius-md);
+      background: var(--gradient-primary);
+      color: var(--text-light);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
       font-size: 0.875rem;
       font-weight: 600;
       display: inline-block;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 4px 15px rgba(0, 201, 167, 0.3);
     }
 
     .floating-elements {
@@ -349,7 +372,7 @@ import { AnimationService } from '../../services/animation.service';
 
     .tech-icon {
       position: absolute;
-      background: white;
+      background: var(--bg-primary);
       width: 60px;
       height: 60px;
       border-radius: 50%;
@@ -357,8 +380,8 @@ import { AnimationService } from '../../services/animation.service';
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      box-shadow: var(--shadow-md);
-      border: 2px solid var(--neutral-200);
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.15);
+      border: 2px solid var(--border-color);
       animation: gentle-float 6s ease-in-out infinite;
     }
 
@@ -381,25 +404,25 @@ import { AnimationService } from '../../services/animation.service';
     }
 
     .expertise-section {
-      padding: var(--space-3xl) 0;
-      background: white;
+      padding: 3rem 0;
+      background: var(--bg-primary);
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: var(--space-3xl);
+      margin-bottom: 3rem;
     }
 
     .section-title {
       font-size: 2.5rem;
       font-weight: 700;
-      color: var(--neutral-900);
-      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+      margin-bottom: 1rem;
     }
 
     .section-subtitle {
       font-size: 1.25rem;
-      color: var(--neutral-600);
+      color: var(--text-secondary);
       font-weight: 400;
       margin: 0;
     }
@@ -407,18 +430,19 @@ import { AnimationService } from '../../services/animation.service';
     .expertise-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: var(--space-2xl);
-      margin-bottom: var(--space-3xl);
+      gap: 2rem;
+      margin-bottom: 3rem;
     }
 
     .expertise-card {
-      background: white;
-      border: 1px solid var(--neutral-200);
-      border-radius: var(--radius-xl);
-      padding: var(--space-2xl);
-      transition: all 0.2s ease;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.05);
     }
 
     .expertise-card::before {
@@ -428,17 +452,17 @@ import { AnimationService } from '../../services/animation.service';
       left: 0;
       right: 0;
       height: 4px;
-      background: var(--primary-gradient);
+      background: var(--gradient-primary);
     }
 
     .expertise-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--primary-200);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 201, 167, 0.15);
+      border-color: var(--color-primary);
     }
 
     .card-icon {
-      margin-bottom: var(--space-lg);
+      margin-bottom: 1.5rem;
     }
 
     .icon {
@@ -449,30 +473,37 @@ import { AnimationService } from '../../services/animation.service';
     .card-content h3 {
       font-size: 1.5rem;
       font-weight: 600;
-      color: var(--neutral-900);
-      margin-bottom: var(--space-md);
+      color: var(--text-primary);
+      margin-bottom: 1rem;
     }
 
     .card-content p {
-      color: var(--neutral-700);
+      color: var(--text-secondary);
       line-height: 1.6;
-      margin-bottom: var(--space-lg);
+      margin-bottom: 1.5rem;
     }
 
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-sm);
+      gap: 0.5rem;
     }
 
     .tech-tag {
-      background: var(--primary-50);
-      color: var(--primary-700);
-      padding: var(--space-xs) var(--space-md);
-      border-radius: var(--radius-md);
+      background: var(--gradient-hero);
+      color: var(--color-secondary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 8px;
       font-size: 0.875rem;
       font-weight: 500;
-      border: 1px solid var(--primary-200);
+      border: 1px solid rgba(0, 201, 167, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .tech-tag:hover {
+      background: var(--color-primary);
+      color: var(--text-light);
+      border-color: var(--color-primary);
     }
 
     .section-cta {
@@ -482,7 +513,7 @@ import { AnimationService } from '../../services/animation.service';
     @media (max-width: 1024px) {
       .hero-content {
         grid-template-columns: 1fr;
-        gap: var(--space-2xl);
+        gap: 2rem;
         text-align: center;
       }
 
@@ -506,13 +537,13 @@ import { AnimationService } from '../../services/animation.service';
 
       .key-metrics {
         justify-content: center;
-        gap: var(--space-xl);
+        gap: 1.5rem;
       }
 
       .cta-buttons {
         flex-direction: column;
         align-items: center;
-        gap: var(--space-md);
+        gap: 1rem;
       }
 
       .btn-primary,
@@ -524,7 +555,7 @@ import { AnimationService } from '../../services/animation.service';
 
       .expertise-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-xl);
+        gap: 1.5rem;
       }
 
       .section-title {
