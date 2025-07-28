@@ -111,269 +111,43 @@ interface Project {
     <app-footer></app-footer>
   `,
   styles: [`
-    :host {
-      --color-primary: #00C9A7;
-      --color-secondary: #00BFA6;
-      --color-accent: #20E3C7;
-      --bg-primary: #FFFFFF;
-      --bg-secondary: #F8FFFE;
-      --bg-dark: #2A2A2A;
-      --text-primary: #2D3748;
-      --text-secondary: #718096;
-      --text-light: #FFFFFF;
-      --border-color: #E2E8F0;
-      --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-      --gradient-hero: linear-gradient(135deg, rgba(0, 201, 167, 0.1) 0%, rgba(0, 191, 166, 0.1) 100%);
-    }
+    :host{--p:#00C9A7;--s:#00BFA6;--a:#20E3C7;--bg:#FFF;--bg2:#F8FFFE;--dark:#2A2A2A;--txt:#2D3748;--txt2:#718096;--light:#FFF;--brd:#E2E8F0;--grad:linear-gradient(135deg,var(--p) 0%,var(--s) 100%);--grad2:linear-gradient(135deg,rgba(0,201,167,.1) 0%,rgba(0,191,166,.1) 100%)}
 
-    .hero-section {
-      background: var(--gradient-hero);
-      min-height: 40vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
+    .hero-section{background:var(--grad2);min-height:40vh;display:flex;align-items:center;position:relative;overflow:hidden}
 
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%2300C9A7" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-      z-index: -1;
-    }
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+    .page-title{font-size:2.5rem;font-weight:700;color:var(--txt);text-align:center;margin-bottom:1rem}
+    .gradient-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .page-subtitle{font-size:1.2rem;color:var(--txt2);text-align:center;margin-bottom:2rem}
+    .content-section{padding:4rem 0;background:var(--bg)}
+    .filter-section{display:flex;justify-content:center;margin-bottom:3rem}
+    .filter-group{background:var(--bg);border-radius:25px;box-shadow:0 10px 30px rgba(0,201,167,.1);border:1px solid var(--brd);overflow:hidden}
+    .filter-group mat-button-toggle{border:none;padding:.75rem 1.5rem;font-weight:600;transition:all .3s ease;color:var(--txt)}
+    .filter-group mat-button-toggle.mat-button-toggle-checked{background:var(--grad);color:var(--light)}
+    .filter-group mat-button-toggle:hover:not(.mat-button-toggle-checked){background:var(--grad2);color:var(--p)}
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:2rem}
+    .project-card{position:relative;border-radius:15px;box-shadow:0 10px 30px rgba(0,201,167,.1);border:1px solid var(--brd);transition:all .3s ease;overflow:hidden;margin-bottom:2rem;background:var(--bg)}
+    .project-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:var(--grad)}
+    .project-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,201,167,.15);border-color:var(--p)}
 
-    .page-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+    .header-content{display:flex;justify-content:space-between;align-items:flex-start;width:100%;gap:1rem}
+    .project-category-badge{background:var(--grad);color:var(--light);padding:.5rem 1rem;border-radius:20px;font-size:.8rem;font-weight:600;white-space:nowrap;flex-shrink:0;align-self:flex-start;box-shadow:0 2px 8px rgba(0,201,167,.3)}
+    .project-title{color:var(--txt);font-weight:700;font-size:1.2rem;margin:0;line-height:1.4;word-wrap:break-word;overflow-wrap:break-word;flex:1}
+    .card-content{padding-top:1rem}
+    .project-description{color:var(--txt2);line-height:1.6;margin-bottom:1.5rem;font-size:1rem}
+    .impact-section{margin-bottom:1.5rem}
 
-    .gradient-text {
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .impact-chip{background:rgba(0,201,167,.1);color:var(--s);font-size:.85rem;font-weight:600;margin:.25rem;border:1px solid rgba(0,201,167,.2);transition:all .3s ease}
+    .impact-chip:hover{background:var(--p);color:var(--light);border-color:var(--p)}
+    .tech-section{margin-bottom:1.5rem}
+    .tech-section h4{color:var(--txt);font-size:1rem;margin-bottom:.5rem;font-weight:600}
+    .tech-chip{background:var(--grad2);color:var(--txt);font-size:.85rem;margin:.25rem;border:1px solid rgba(0,201,167,.15);transition:all .3s ease}
+    .tech-chip:hover{background:var(--a);color:var(--light);border-color:var(--a)}
+    .features-section p{color:var(--txt2);line-height:1.6;margin-bottom:.5rem}
+    .features-section strong{color:var(--txt)}
 
-    .page-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .content-section {
-      padding: 4rem 0;
-      background: var(--bg-primary);
-    }
-
-    .filter-section {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 3rem;
-    }
-
-    .filter-group {
-      background: var(--bg-primary);
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
-      border: 1px solid var(--border-color);
-      overflow: hidden;
-    }
-
-    .filter-group mat-button-toggle {
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      color: var(--text-primary);
-    }
-
-    .filter-group mat-button-toggle.mat-button-toggle-checked {
-      background: var(--gradient-primary);
-      color: var(--text-light);
-    }
-
-    .filter-group mat-button-toggle:hover:not(.mat-button-toggle-checked) {
-      background: var(--gradient-hero);
-      color: var(--color-primary);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
-    }
-
-    .project-card {
-      position: relative;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 201, 167, 0.1);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      background: var(--bg-primary);
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--gradient-primary);
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 50px rgba(0, 201, 167, 0.15);
-      border-color: var(--color-primary);
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      width: 100%;
-      gap: 1rem;
-    }
-
-    .project-category-badge {
-      background: var(--gradient-primary);
-      color: var(--text-light);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      white-space: nowrap;
-      flex-shrink: 0;
-      align-self: flex-start;
-      box-shadow: 0 2px 8px rgba(0, 201, 167, 0.3);
-    }
-
-    .project-title {
-      color: var(--text-primary);
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin: 0;
-      line-height: 1.4;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      flex: 1;
-    }
-
-    .card-content {
-      padding-top: 1rem;
-    }
-
-    .project-description {
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-    }
-
-    .impact-section {
-      margin-bottom: 1.5rem;
-    }
-
-    .impact-chip {
-      background: rgba(0, 201, 167, 0.1);
-      color: var(--color-secondary);
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin: 0.25rem;
-      border: 1px solid rgba(0, 201, 167, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .impact-chip:hover {
-      background: var(--color-primary);
-      color: var(--text-light);
-      border-color: var(--color-primary);
-    }
-
-    .tech-section {
-      margin-bottom: 1.5rem;
-    }
-
-    .tech-section h4 {
-      color: var(--text-primary);
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .tech-chip {
-      background: var(--gradient-hero);
-      color: var(--text-primary);
-      font-size: 0.85rem;
-      margin: 0.25rem;
-      border: 1px solid rgba(0, 201, 167, 0.15);
-      transition: all 0.3s ease;
-    }
-
-    .tech-chip:hover {
-      background: var(--color-accent);
-      color: var(--text-light);
-      border-color: var(--color-accent);
-    }
-
-    .features-section p {
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 0.5rem;
-    }
-
-    .features-section strong {
-      color: var(--text-primary);
-    }
-
-    @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .filter-group {
-        flex-wrap: wrap;
-      }
-
-      .header-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-      }
-
-      .project-category-badge {
-        align-self: flex-start;
-      }
-
-      .project-title {
-        font-size: 1.1rem;
-      }
-
-      .content-section {
-        padding: 2rem 0;
-      }
-
-      .container {
-        padding: 0 1rem;
-      }
-    }
+    @media (max-width:768px){.projects-grid{grid-template-columns:1fr}.filter-group{flex-wrap:wrap}.header-content{flex-direction:column;align-items:flex-start;gap:.5rem}.project-category-badge{align-self:flex-start}.project-title{font-size:1.1rem}.content-section{padding:2rem 0}.container{padding:0 1rem}}
   `]
 })
 export class ProjectsComponent implements OnInit {
