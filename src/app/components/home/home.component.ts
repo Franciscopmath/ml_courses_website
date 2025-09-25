@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +16,7 @@ import { AnimationService } from '../../services/animation.service';
     <app-navbar></app-navbar>
     
     <div class="hero-section">
+      <canvas #particleCanvas class="particle-canvas"></canvas>
       <div class="hero-background"></div>
       <div class="hero-content">
         <div class="hero-text">
@@ -27,8 +28,8 @@ import { AnimationService } from '../../services/animation.service';
           </div>
           
           <h1 class="hero-title">
-            Senior Data Scientist<br>
-            <span class="hero-subtitle">Driving Business Impact Through AI</span>
+            <span #nameText class="hero-name"></span><br>
+            <span #titleText class="hero-subtitle"></span>
           </h1>
           
           <p class="hero-description">
@@ -147,16 +148,22 @@ import { AnimationService } from '../../services/animation.service';
     :host{--p:#00C9A7;--s:#00BFA6;--a:#20E3C7;--bg:#FFF;--bg2:#F8FFFE;--dark:#2A2A2A;--txt:#2D3748;--txt2:#718096;--light:#FFF;--brd:#E2E8F0;--grad:linear-gradient(135deg,var(--p) 0%,var(--s) 100%);--grad2:linear-gradient(135deg,rgba(0,201,167,.1) 0%,rgba(0,191,166,.1) 100%)}
 
     .hero-section{position:relative;min-height:calc(100vh - 80px);display:flex;align-items:center;background:var(--bg2);overflow:hidden}
-    .hero-background{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 20%,rgba(0,201,167,.05) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(0,191,166,.05) 0%,transparent 50%);z-index:0}
+    .particle-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
+    .hero-background{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 20%,rgba(0,201,167,.05) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(0,191,166,.05) 0%,transparent 50%);z-index:1}
 
-    .hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:3rem 2rem;display:grid;grid-template-columns:1fr 400px;gap:3rem;align-items:center}
+    .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:3rem 2rem;display:grid;grid-template-columns:1fr 400px;gap:3rem;align-items:center}
     .status-indicator{margin-bottom:2rem}
     .availability-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,201,167,.1);color:var(--s);padding:.5rem 1rem;border-radius:20px;border:1px solid rgba(0,201,167,.2);font-size:.875rem;font-weight:500}
     .status-dot{width:8px;height:8px;background:var(--p);border-radius:50%;animation:gentle-pulse 2s ease-in-out infinite}
     @keyframes gentle-pulse{0%,100%{opacity:1}50%{opacity:.6}}
 
     .hero-title{font-size:3.5rem;font-weight:700;line-height:1.1;color:var(--txt);margin-bottom:1.5rem}
-    .hero-subtitle{font-size:1.5rem;font-weight:400;color:var(--p);display:block}
+    .hero-name{display:block;position:relative}
+    .hero-name::after{content:'';position:absolute;right:-3px;top:0;width:3px;height:100%;background:var(--p);animation:blink 1s infinite;opacity:var(--cursor-opacity, 1)}
+    .hero-subtitle{font-size:1.5rem;font-weight:400;color:var(--p);display:block;position:relative}
+    .hero-subtitle::after{content:'';position:absolute;right:-3px;top:0;width:3px;height:100%;background:var(--p);animation:blink 1s infinite;opacity:0}
+    .hero-subtitle.typing::after{opacity:1}
+    @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
     .hero-description{font-size:1.125rem;line-height:1.7;color:var(--txt2);margin-bottom:2rem}
     .key-metrics{display:flex;gap:2rem;margin-bottom:2rem}
     .metric{display:flex;flex-direction:column;align-items:flex-start}
@@ -206,18 +213,373 @@ import { AnimationService } from '../../services/animation.service';
     @media (max-width:480px){.hero-title{font-size:2rem}.key-metrics{flex-direction:column;gap:1rem;align-items:center;text-align:center}.expertise-card{padding:1.5rem}}
   `]
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('particleCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('nameText', { static: true }) nameTextRef!: ElementRef<HTMLSpanElement>;
+  @ViewChild('titleText', { static: true }) titleTextRef!: ElementRef<HTMLSpanElement>;
 
-  constructor(private animationService: AnimationService) {}
+  private canvas!: HTMLCanvasElement;
+  private ctx!: CanvasRenderingContext2D;
+  private particles: Particle[] = [];
+  private mathWaves: MathWave[] = [];
+  private floatingNumbers: FloatingNumber[] = [];
+  private floatingFormulas: FloatingFormula[] = [];
+  private animationId: number = 0;
+  private isAnimating = false;
+  private animationTime = 0;
+
+  constructor(private animationService: AnimationService, private renderer: Renderer2) {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
+    this.initializeCanvas();
+    this.createParticles();
+    this.createMathWaves();
+    this.createFloatingNumbers();
+    this.createFloatingFormulas();
+    this.startAnimation();
+    this.startTypewriterAnimation();
+    
     // Initialize page animations
     setTimeout(() => {
       this.animationService.initPageAnimations();
       this.animationService.addFloatingAnimation('.profile-image');
       this.animationService.addPulseAnimation('.specialty-chip');
     }, 100);
+  }
+
+  private initializeCanvas() {
+    this.canvas = this.canvasRef.nativeElement;
+    this.ctx = this.canvas.getContext('2d')!;
+    this.resizeCanvas();
+    window.addEventListener('resize', () => this.resizeCanvas());
+  }
+
+  private resizeCanvas() {
+    const rect = this.canvas.parentElement!.getBoundingClientRect();
+    this.canvas.width = rect.width;
+    this.canvas.height = rect.height;
+    this.createParticles();
+    this.createMathWaves();
+    this.createFloatingNumbers();
+    this.createFloatingFormulas();
+  }
+
+  private createParticles() {
+    this.particles = [];
+    const numParticles = Math.min(80, Math.floor((this.canvas.width * this.canvas.height) / 8000));
+    
+    for (let i = 0; i < numParticles; i++) {
+      this.particles.push(new Particle(this.canvas.width, this.canvas.height));
+    }
+  }
+
+  private createMathWaves() {
+    this.mathWaves = [];
+    // Create sine and cosine waves
+    this.mathWaves.push(new MathWave(this.canvas.width, this.canvas.height, 'sin', 0));
+    this.mathWaves.push(new MathWave(this.canvas.width, this.canvas.height, 'cos', Math.PI / 4));
+  }
+
+  private createFloatingNumbers() {
+    this.floatingNumbers = [];
+    const numbers = ['3.14159', '2.718', '1.618', '0.577', '∞', '1.414', '0.693', '2.302', '6.626', '9.109', '1.381', '6.022', '299792458', '0.007297', 'e^π', 'π²/6', '√2', 'log₂(10)', '42'];
+    
+    numbers.forEach((number, index) => {
+      this.floatingNumbers.push(new FloatingNumber(
+        number,
+        this.canvas.width,
+        this.canvas.height,
+        index
+      ));
+    });
+  }
+
+  private createFloatingFormulas() {
+    this.floatingFormulas = [];
+    const formulas = ['∑', '∫', '∂', 'σ²', 'μ', 'λ', '∇', 'α'];
+    
+    formulas.forEach((formula, index) => {
+      this.floatingFormulas.push(new FloatingFormula(
+        formula,
+        this.canvas.width,
+        this.canvas.height,
+        index
+      ));
+    });
+  }
+
+  private startAnimation() {
+    if (this.isAnimating) return;
+    this.isAnimating = true;
+    this.animate();
+  }
+
+  private animate() {
+    this.animationTime += 0.016; // ~60fps
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    // Draw math waves (background)
+    this.mathWaves.forEach(wave => {
+      wave.update(this.animationTime);
+      wave.draw(this.ctx);
+    });
+    
+    // Update and draw particles
+    this.particles.forEach(particle => {
+      particle.update(this.canvas.width, this.canvas.height);
+      particle.draw(this.ctx);
+    });
+    
+    // Draw connections
+    this.drawConnections();
+    
+    // Draw floating numbers
+    this.floatingNumbers.forEach(number => {
+      number.update(this.animationTime);
+      number.draw(this.ctx);
+    });
+    
+    // Draw floating formulas
+    this.floatingFormulas.forEach(formula => {
+      formula.update(this.animationTime);
+      formula.draw(this.ctx);
+    });
+    
+    this.animationId = requestAnimationFrame(() => this.animate());
+  }
+
+  private drawConnections() {
+    for (let i = 0; i < this.particles.length; i++) {
+      for (let j = i + 1; j < this.particles.length; j++) {
+        const dx = this.particles[i].x - this.particles[j].x;
+        const dy = this.particles[i].y - this.particles[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 120) {
+          const opacity = (1 - distance / 120) * 0.3;
+          this.ctx.strokeStyle = `rgba(0, 201, 167, ${opacity})`;
+          this.ctx.lineWidth = 1;
+          this.ctx.beginPath();
+          this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+          this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+          this.ctx.stroke();
+        }
+      }
+    }
+  }
+
+  private async startTypewriterAnimation() {
+    const nameText = 'Francisco Perez';
+    const titleText = 'Científico de Datos';
+    
+    await this.typeText(this.nameTextRef.nativeElement, nameText, 100);
+    
+    // Hide name cursor and start title
+    this.nameTextRef.nativeElement.style.setProperty('--cursor-opacity', '0');
+    this.renderer.addClass(this.titleTextRef.nativeElement, 'typing');
+    
+    await this.typeText(this.titleTextRef.nativeElement, titleText, 80);
+    
+    // Hide title cursor after completion
+    setTimeout(() => {
+      this.renderer.removeClass(this.titleTextRef.nativeElement, 'typing');
+    }, 1000);
+  }
+
+  private typeText(element: HTMLElement, text: string, speed: number): Promise<void> {
+    return new Promise((resolve) => {
+      let i = 0;
+      const timer = setInterval(() => {
+        if (i < text.length) {
+          element.textContent = text.substring(0, i + 1);
+          i++;
+        } else {
+          clearInterval(timer);
+          resolve();
+        }
+      }, speed);
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+    }
+    this.isAnimating = false;
+    window.removeEventListener('resize', () => this.resizeCanvas());
+  }
+}
+
+class Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  opacity: number;
+
+  constructor(canvasWidth: number, canvasHeight: number) {
+    this.x = Math.random() * canvasWidth;
+    this.y = Math.random() * canvasHeight;
+    this.vx = (Math.random() - 0.5) * 0.5;
+    this.vy = (Math.random() - 0.5) * 0.5;
+    this.size = Math.random() * 2 + 1;
+    this.opacity = Math.random() * 0.8 + 0.2;
+  }
+
+  update(canvasWidth: number, canvasHeight: number) {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    if (this.x < 0 || this.x > canvasWidth) this.vx *= -1;
+    if (this.y < 0 || this.y > canvasHeight) this.vy *= -1;
+    
+    this.x = Math.max(0, Math.min(canvasWidth, this.x));
+    this.y = Math.max(0, Math.min(canvasHeight, this.y));
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.fillStyle = `rgba(0, 201, 167, ${this.opacity})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+class MathWave {
+  private startY: number;
+  private amplitude: number;
+  private frequency: number;
+  private phase: number;
+  private speed: number;
+  private type: 'sin' | 'cos';
+  private canvasWidth: number;
+  private canvasHeight: number;
+
+  constructor(canvasWidth: number, canvasHeight: number, type: 'sin' | 'cos', initialPhase: number) {
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
+    this.type = type;
+    this.startY = canvasHeight * (type === 'sin' ? 0.3 : 0.7);
+    this.amplitude = Math.min(40, canvasHeight * 0.08);
+    this.frequency = 0.008;
+    this.phase = initialPhase;
+    this.speed = type === 'sin' ? 0.02 : 0.015;
+  }
+
+  update(time: number) {
+    this.phase = time * this.speed;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.strokeStyle = this.type === 'sin' ? 'rgba(0, 201, 167, 0.15)' : 'rgba(0, 191, 166, 0.12)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+
+    for (let x = 0; x < this.canvasWidth; x += 4) {
+      const y = this.startY + this.amplitude * (this.type === 'sin' 
+        ? Math.sin(x * this.frequency + this.phase)
+        : Math.cos(x * this.frequency + this.phase));
+      
+      if (x === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+    }
+    ctx.stroke();
+  }
+}
+
+class FloatingNumber {
+  private number: string;
+  private x: number;
+  private y: number;
+  private initialX: number;
+  private initialY: number;
+  private floatAmplitude: number;
+  private floatSpeed: number;
+  private opacity: number;
+  private size: number;
+  private rotationSpeed: number;
+  private rotation: number;
+  private canvasWidth: number;
+  private canvasHeight: number;
+
+  constructor(number: string, canvasWidth: number, canvasHeight: number, index: number) {
+    this.number = number;
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
+    this.initialX = Math.random() * canvasWidth * 0.9 + canvasWidth * 0.05;
+    this.initialY = Math.random() * canvasHeight * 0.8 + canvasHeight * 0.1;
+    this.x = this.initialX;
+    this.y = this.initialY;
+    this.floatAmplitude = 20 + Math.random() * 15;
+    this.floatSpeed = 0.008 + Math.random() * 0.012;
+    this.opacity = 0.08 + Math.random() * 0.12;
+    this.size = 12 + Math.random() * 8;
+    this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+    this.rotation = 0;
+  }
+
+  update(time: number) {
+    this.x = this.initialX + Math.sin(time * this.floatSpeed + this.initialX * 0.01) * this.floatAmplitude;
+    this.y = this.initialY + Math.cos(time * this.floatSpeed * 0.8 + this.initialY * 0.01) * this.floatAmplitude * 0.6;
+    this.rotation += this.rotationSpeed;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rotation);
+    ctx.fillStyle = `rgba(0, 201, 167, ${this.opacity})`;
+    ctx.font = `${this.size}px 'JetBrains Mono', monospace`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(this.number, 0, 0);
+    ctx.restore();
+  }
+}
+
+class FloatingFormula {
+  private symbol: string;
+  private x: number;
+  private y: number;
+  private initialX: number;
+  private initialY: number;
+  private floatAmplitude: number;
+  private floatSpeed: number;
+  private opacity: number;
+  private size: number;
+  private canvasWidth: number;
+  private canvasHeight: number;
+
+  constructor(symbol: string, canvasWidth: number, canvasHeight: number, index: number) {
+    this.symbol = symbol;
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
+    this.initialX = Math.random() * canvasWidth * 0.8 + canvasWidth * 0.1;
+    this.initialY = Math.random() * canvasHeight * 0.6 + canvasHeight * 0.2;
+    this.x = this.initialX;
+    this.y = this.initialY;
+    this.floatAmplitude = 15 + Math.random() * 10;
+    this.floatSpeed = 0.01 + Math.random() * 0.01;
+    this.opacity = 0.1 + Math.random() * 0.15;
+    this.size = 20 + Math.random() * 15;
+  }
+
+  update(time: number) {
+    this.x = this.initialX + Math.sin(time * this.floatSpeed) * this.floatAmplitude * 0.5;
+    this.y = this.initialY + Math.cos(time * this.floatSpeed * 0.7) * this.floatAmplitude;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.fillStyle = `rgba(0, 201, 167, ${this.opacity})`;
+    ctx.font = `${this.size}px 'JetBrains Mono', monospace`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(this.symbol, this.x, this.y);
   }
 }
