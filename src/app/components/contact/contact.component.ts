@@ -175,13 +175,17 @@ import { FooterComponent } from '../shared/footer/footer.component';
     <app-footer></app-footer>
   `,
   styles: [`
-    :host{--p:#00C9A7;--s:#00BFA6;--a:#20E3C7;--bg:#FFF;--bg2:#F8FFFE;--txt:#2D3748;--txt2:#718096;--brd:#E2E8F0}
-    .hero-section{background:var(--grad2);min-height:40vh;display:flex;align-items:center;position:relative;overflow:hidden}
-    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
-    .page-title{font-size:2.5rem;font-weight:700;color:var(--txt);text-align:center;margin-bottom:1rem}
-    .gradient-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .page-subtitle{font-size:1.2rem;color:var(--txt2);text-align:center;margin-bottom:2rem}
-    .content-section{padding:4rem 0;background:var(--bg)}
+    :host{--p:#00C9A7;--s:#00BFA6;--a:#20E3C7;--bg:#FFF;--bg2:#F8FFFE;--dark:#2A2A2A;--txt:#2D3748;--txt2:#718096;--light:#FFF;--brd:#E2E8F0;--grad:linear-gradient(135deg,var(--p) 0%,var(--s) 100%);--grad2:linear-gradient(135deg,rgba(0,201,167,.1) 0%,rgba(0,191,166,.1) 100%)}
+    .hero-section{background:linear-gradient(135deg, var(--p) 0%, var(--s) 50%, var(--a) 100%);min-height:50vh;display:flex;align-items:center;position:relative;overflow:hidden}
+    .hero-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 80%, rgba(32,227,199,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(0,191,166,0.15) 0%, transparent 50%);pointer-events:none}
+    .hero-section::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);animation:shine 3s infinite}
+    @keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}  
+    @keyframes glow{0%{text-shadow:0 0 30px rgba(255,255,255,0.5)}100%{text-shadow:0 0 40px rgba(255,255,255,0.8), 0 0 60px rgba(32,227,199,0.3)}}
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+    .page-title{font-size:3.2rem;font-weight:800;color:var(--light);text-align:center;margin-bottom:1.5rem;text-shadow:0 4px 12px rgba(0,0,0,0.2);letter-spacing:-0.02em}
+    .gradient-text{background:linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 50%, #ffffff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 30px rgba(255,255,255,0.5);animation:glow 2s ease-in-out infinite alternate}
+    .page-subtitle{font-size:1.4rem;color:rgba(255,255,255,0.9);text-align:center;margin-bottom:3rem;font-weight:400;text-shadow:0 2px 8px rgba(0,0,0,0.1);line-height:1.6}
+    .content-section{padding:4rem 0;background:var(--bg2)}
     .contact-content{display:flex;justify-content:center;align-items:center}
     .contact-info{max-width:800px;width:100%}
     .contact-info h2{color:var(--txt);font-weight:700;margin-bottom:1.5rem;font-size:2rem}
@@ -204,8 +208,8 @@ import { FooterComponent } from '../shared/footer/footer.component';
     .cv-meta{display:flex;gap:1rem;align-items:center}
     .file-type{background:rgba(220,53,69,.1);color:#dc3545;padding:.25rem .5rem;border-radius:4px;font-size:.75rem;font-weight:600;text-transform:uppercase}
     .file-updated{color:var(--txt2);font-size:.85rem}
-    .cv-download-btn{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;background:var(--grad);color:#FFF;text-decoration:none;border-radius:8px;font-weight:600;font-size:.95rem;box-shadow:0 4px 15px rgba(0,201,167,.3);transition:all .3s ease;flex-shrink:0}
-    .cv-download-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,201,167,.4);text-decoration:none;color:#FFF}
+    .cv-download-btn{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;background:var(--grad);color:var(--light);text-decoration:none;border-radius:8px;font-weight:600;font-size:.95rem;box-shadow:0 4px 15px rgba(0,201,167,.3);transition:all .3s ease;flex-shrink:0}
+    .cv-download-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,201,167,.4);text-decoration:none;color:var(--light)}
     .cv-download-btn mat-icon{font-size:1rem;width:1rem;height:1rem}
     .social-links{display:flex;gap:1rem;margin-bottom:3rem}
     .social-link{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;background:var(--bg);border-radius:25px;text-decoration:none;color:var(--txt);border:1px solid var(--brd);box-shadow:0 3px 10px rgba(0,201,167,.1);transition:all .3s ease;font-weight:500}
