@@ -374,8 +374,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private async startTypewriterAnimation() {
     const nameText = 'Francisco Perez';
-    const titleText = 'Científico de Datos';
-    
+    const titleText = 'Data Scientist';
+
     await this.typeText(this.nameTextRef.nativeElement, nameText, 100);
     
     // Hide name cursor and start title
