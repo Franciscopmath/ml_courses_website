@@ -97,7 +97,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
                   <mat-icon>alternate_email</mat-icon>
                   <span>Twitter</span>
                 </a>
-                <a href="#" class="social-link github">
+                <a href="https://github.com/Franciscopmath" target="_blank" class="social-link github">
                   <mat-icon>code</mat-icon>
                   <span>GitHub</span>
                 </a>

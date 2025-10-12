@@ -79,7 +79,7 @@ import { RouterModule } from '@angular/router';
                 <a href="https://twitter.com/Frankmathhuman" target="_blank" class="social-link" title="Twitter">
                   <mat-icon>alternate_email</mat-icon>
                 </a>
-                <a href="#" class="social-link" title="GitHub">
+                <a href="https://github.com/Franciscopmath" target="_blank" class="social-link" title="GitHub">
                   <mat-icon>code</mat-icon>
                 </a>
                 <a href="https://wa.me/525518355287" target="_blank" class="social-link whatsapp" title="WhatsApp">
