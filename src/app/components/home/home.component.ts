@@ -33,14 +33,14 @@ import { AnimationService } from '../../services/animation.service';
           </h1>
           
           <p class="hero-description">
-            I'm Francisco Perez, an experienced data scientist specializing in machine learning solutions 
-            for enterprise environments. With proven expertise in computer vision, pricing optimization, 
-            and statistical modeling, I transform complex data challenges into strategic business advantages.
+            I'm Francisco Perez, a Senior Data Scientist with over 7 years of experience applying machine learning
+            algorithms to solve complex business problems, coupled with more than 10 years of academic expertise.
+            Specialized in time series forecasting, pricing optimization, and ensemble methods for demand prediction.
           </p>
-          
+
           <div class="key-metrics">
             <div class="metric">
-              <span class="metric-number">5+</span>
+              <span class="metric-number">7+</span>
               <span class="metric-label">Years Experience</span>
             </div>
             <div class="metric">
@@ -48,8 +48,8 @@ import { AnimationService } from '../../services/animation.service';
               <span class="metric-label">Avg. ROI Improvement</span>
             </div>
             <div class="metric">
-              <span class="metric-number">50+</span>
-              <span class="metric-label">Projects Delivered</span>
+              <span class="metric-number">10+</span>
+              <span class="metric-label">Years Academic</span>
             </div>
           </div>
           
@@ -91,13 +91,14 @@ import { AnimationService } from '../../services/animation.service';
               <span class="icon">🧠</span>
             </div>
             <div class="card-content">
-              <h3>Machine Learning Engineering</h3>
-              <p>End-to-end ML pipeline development, model deployment, and performance optimization at scale</p>
+              <h3>Machine Learning & Forecasting</h3>
+              <p>Advanced forecasting systems using ensemble methods, time series analysis (ARIMA, SARIMA, Prophet), and deep learning for demand prediction</p>
               <div class="tech-stack">
                 <span class="tech-tag">Python</span>
                 <span class="tech-tag">TensorFlow</span>
                 <span class="tech-tag">PyTorch</span>
-                <span class="tech-tag">MLOps</span>
+                <span class="tech-tag">Scikit-Learn</span>
+                <span class="tech-tag">XGBoost</span>
               </div>
             </div>
           </div>
@@ -108,12 +109,12 @@ import { AnimationService } from '../../services/animation.service';
             </div>
             <div class="card-content">
               <h3>Computer Vision</h3>
-              <p>Advanced image processing, object detection, and automated quality control systems</p>
+              <p>Object detection, semantic segmentation, facial recognition, and image similarity using transfer learning and deep neural networks</p>
               <div class="tech-stack">
                 <span class="tech-tag">OpenCV</span>
-                <span class="tech-tag">YOLO</span>
+                <span class="tech-tag">TensorFlow</span>
+                <span class="tech-tag">PyTorch</span>
                 <span class="tech-tag">Detectron2</span>
-                <span class="tech-tag">PIL/Pillow</span>
               </div>
             </div>
           </div>
@@ -124,11 +125,12 @@ import { AnimationService } from '../../services/animation.service';
             </div>
             <div class="card-content">
               <h3>Pricing Intelligence</h3>
-              <p>Dynamic pricing strategies and market optimization models for retail environments</p>
+              <p>Dynamic pricing strategies achieving 5-20% profitability improvements through neural networks, LSTM, and optimization algorithms</p>
               <div class="tech-stack">
                 <span class="tech-tag">Statistical Modeling</span>
-                <span class="tech-tag">A/B Testing</span>
+                <span class="tech-tag">IBM CPLEX</span>
                 <span class="tech-tag">Time Series</span>
+                <span class="tech-tag">Neural Networks</span>
               </div>
             </div>
           </div>

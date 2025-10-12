@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+
+<div class="hero-section">
+  <div class="container">
+    <h1 class="page-title">My <span class="gradient-text">Journey</span></h1>
+    <p class="page-subtitle">Professional and academic experience throughout my career</p>
+  </div>
+</div>
+
+<div class="content-section">
+  <div class="container">
+    <div class="timeline">
+      <div class="timeline-item" *ngFor="let exp of experiences; let i = index" [attr.data-index]="i">
+        <div class="timeline-marker">
+          <div class="timeline-icon">
+            <mat-icon>{{ getIconByCategory(exp.category) }}</mat-icon>
+          </div>
+          <div class="timeline-line" *ngIf="i !== experiences.length - 1"></div>
+        </div>
+
+        <div class="timeline-content">
+          <mat-card class="experience-card" [class.current]="exp.category === 'current'">
+            <div class="card-header">
+              <div class="header-left">
+                <div class="category-badge" [class.current]="exp.category === 'current'">
+                  {{ getCategoryLabel(exp.category) }}
+                </div>
+                <h2 class="role">{{ exp.role }}</h2>
+                <h3 class="company">{{ exp.company }}</h3>
+                <div class="meta-info">
+                  <span class="period">
+                    <mat-icon>schedule</mat-icon>
+                    {{ exp.period }}
+                  </span>
+                  <span class="location">
+                    <mat-icon>location_on</mat-icon>
+                    {{ exp.location }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <mat-card-content>
+              <p class="description">{{ exp.description }}</p>
+
+              <div class="achievements-section" *ngIf="exp.achievements.length > 0">
+                <h4>Key Achievements:</h4>
+                <ul class="achievements-list">
+                  <li *ngFor="let achievement of exp.achievements">
+                    <mat-icon>check_circle</mat-icon>
+                    <span>{{ achievement }}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="technologies-section" *ngIf="exp.technologies.length > 0">
+                <h4>Technologies Used:</h4>
+                <mat-chip-set>
+                  <mat-chip *ngFor="let tech of exp.technologies" class="tech-chip">
+                    {{ tech }}
+                  </mat-chip>
+                </mat-chip-set>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

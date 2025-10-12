@@ -32,20 +32,20 @@ import { FooterComponent } from '../shared/footer/footer.component';
                 <div class="bio-section">
                   <h2>About Me</h2>
                   <p class="lead">
-                    Senior Expert Data Scientist with over 10 years of combined experience bridging 
-                    the gap between theoretical knowledge and practical solutions in both industry and academia.
+                    Senior Data Scientist with over 7 years of experience applying machine learning algorithms to solve
+                    complex business problems, coupled with more than 10 years of academic expertise.
                   </p>
                   <p>
-                    My expertise spans retail analytics, computer vision, and machine learning applications. 
-                    I've successfully led transformative projects including national pricing optimization 
-                    initiatives using IBM Cloud Pak for Data, delivering measurable impact with profitability 
-                    improvements of 5-20%.
+                    I have a proven track record leading end-to-end data science initiatives across retail and consulting
+                    sectors, with deep expertise in forecasting, pricing optimization, and strategic modeling. I'm specialized
+                    in time series forecasting and ensemble methods for demand prediction, comfortable translating analytical
+                    insights into actionable business decisions.
                   </p>
                   <p>
-                    My academic foundation includes a PhD in Mathematics from UNAM, where I also served as 
-                    a professor teaching courses in probability, statistics, and mathematical analysis. 
-                    This unique combination of academic rigor and industry experience enables me to tackle 
-                    complex data science challenges with both theoretical depth and practical insight.
+                    My commitment to driving transformative change has led me to contribute significantly to various projects,
+                    including advanced forecasting systems, process automation with computer vision, and visual search. Currently,
+                    I'm working as a Senior Data Scientist Consultant at Axity for Walmart México, developing automated forecasting
+                    systems using ensemble methods.
                   </p>
                 </div>
                 
@@ -56,10 +56,10 @@ import { FooterComponent } from '../shared/footer/footer.component';
                     </mat-card-header>
                     <mat-card-content>
                       <ul>
+                        <li>Time Series Forecasting & Ensemble Methods</li>
                         <li>Machine Learning & Deep Learning</li>
                         <li>Computer Vision & Image Processing</li>
-                        <li>Pricing Optimization & Forecasting</li>
-                        <li>Statistical Analysis & Modeling</li>
+                        <li>Pricing Optimization & Strategic Modeling</li>
                       </ul>
                     </mat-card-content>
                   </mat-card>
@@ -70,10 +70,10 @@ import { FooterComponent } from '../shared/footer/footer.component';
                     </mat-card-header>
                     <mat-card-content>
                       <ul>
-                        <li>Retail & E-commerce</li>
-                        <li>Fashion & Apparel</li>
+                        <li>Retail & E-commerce (Walmart, Coppel)</li>
+                        <li>Consulting (Axity)</li>
                         <li>Government & Public Sector</li>
-                        <li>Academia & Research</li>
+                        <li>Academia & Research (UNAM)</li>
                       </ul>
                     </mat-card-content>
                   </mat-card>
@@ -115,6 +115,8 @@ import { FooterComponent } from '../shared/footer/footer.component';
                       <mat-chip>Python</mat-chip>
                       <mat-chip>R</mat-chip>
                       <mat-chip>SQL</mat-chip>
+                      <mat-chip>Fortran</mat-chip>
+                      <mat-chip>C#</mat-chip>
                       <mat-chip>Matlab</mat-chip>
                     </mat-chip-set>
                   </mat-card-content>
@@ -128,8 +130,9 @@ import { FooterComponent } from '../shared/footer/footer.component';
                   <mat-card-content>
                     <mat-chip-set>
                       <mat-chip>Object Detection</mat-chip>
-                      <mat-chip>Image Segmentation</mat-chip>
+                      <mat-chip>Semantic Segmentation</mat-chip>
                       <mat-chip>Facial Recognition</mat-chip>
+                      <mat-chip>Image Similarity</mat-chip>
                       <mat-chip>Transfer Learning</mat-chip>
                     </mat-chip-set>
                   </mat-card-content>
@@ -143,8 +146,9 @@ import { FooterComponent } from '../shared/footer/footer.component';
                   <mat-card-content>
                     <mat-chip-set>
                       <mat-chip>Google Cloud Platform</mat-chip>
-                      <mat-chip>IBM Cloud Pak for Data</mat-chip>
-                      <mat-chip>Azure Data Studio</mat-chip>
+                      <mat-chip>IBM Cloud Paks</mat-chip>
+                      <mat-chip>BigQuery</mat-chip>
+                      <mat-chip>Docker</mat-chip>
                     </mat-chip-set>
                   </mat-card-content>
                 </mat-card>
@@ -193,7 +197,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
                     <mat-card-subtitle>National Autonomous University of Mexico (UNAM)</mat-card-subtitle>
                   </mat-card-header>
                   <mat-card-content>
-                    <p><strong>Expected Graduation:</strong> August 2024</p>
+                    <p><strong>Expected Graduation:</strong> August 2026</p>
                     <p><strong>Period:</strong> 2012-2017</p>
                   </mat-card-content>
                 </mat-card>
@@ -229,7 +233,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
                     <mat-card-subtitle>National Autonomous University of Mexico (UNAM)</mat-card-subtitle>
                   </mat-card-header>
                   <mat-card-content>
-                    <p><strong>Expected Graduation:</strong> August 2024</p>
+                    <p><strong>Expected Graduation:</strong> August 2026</p>
                     <p><strong>Period:</strong> 2005-2007</p>
                   </mat-card-content>
                 </mat-card>
@@ -249,8 +253,9 @@ import { FooterComponent } from '../shared/footer/footer.component';
                     <mat-card-title>General Skills</mat-card-title>
                   </mat-card-header>
                   <mat-card-content>
-                    <p>Collaborative Team Player, Problem Solving, Effective Communication, 
-                    Adaptability, Creativity, Solution-Oriented, Affable, Teamwork.</p>
+                    <p>Collaborative Team Player, Problem Solving, Effective Communication,
+                    Adaptability, Creativity, Solution-Oriented, Teamwork, Analytical Thinking,
+                    Innovation, Cross-Functional Collaboration.</p>
                   </mat-card-content>
                 </mat-card>
 
@@ -274,6 +279,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
                     <ul>
                       <li>Exploring emerging trends in AI, machine learning, and automotive technology</li>
                       <li>Contributing to open-source data science projects</li>
+                      <li>Advanced forecasting methodologies and time series analysis</li>
                     </ul>
                   </mat-card-content>
                 </mat-card>
@@ -305,12 +311,16 @@ import { FooterComponent } from '../shared/footer/footer.component';
   styles: [`
     :host{--p:#00C9A7;--s:#00BFA6;--a:#20E3C7;--bg:#FFF;--bg2:#F8FFFE;--dark:#2A2A2A;--txt:#2D3748;--txt2:#718096;--light:#FFF;--brd:#E2E8F0;--grad:linear-gradient(135deg,var(--p) 0%,var(--s) 100%);--grad2:linear-gradient(135deg,rgba(0,201,167,.1) 0%,rgba(0,191,166,.1) 100%)}
 
-    .hero-section{background:var(--grad2);min-height:40vh;display:flex;align-items:center;position:relative;overflow:hidden}
+    .hero-section{background:linear-gradient(135deg, var(--p) 0%, var(--s) 50%, var(--a) 100%);min-height:50vh;display:flex;align-items:center;position:relative;overflow:hidden}
+    .hero-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 80%, rgba(32,227,199,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(0,191,166,0.15) 0%, transparent 50%);pointer-events:none}
+    .hero-section::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);animation:shine 3s infinite}
+    @keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+    @keyframes glow{0%{text-shadow:0 0 30px rgba(255,255,255,0.5)}100%{text-shadow:0 0 40px rgba(255,255,255,0.8), 0 0 60px rgba(32,227,199,0.3)}}
 
-    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
-    .page-title{font-size:2.5rem;font-weight:700;color:var(--txt);text-align:center;margin-bottom:1rem}
-    .gradient-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .page-subtitle{font-size:1.2rem;color:var(--txt2);text-align:center;margin-bottom:2rem}
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+    .page-title{font-size:3.2rem;font-weight:800;color:var(--light);text-align:center;margin-bottom:1.5rem;text-shadow:0 4px 12px rgba(0,0,0,0.2);letter-spacing:-0.02em}
+    .gradient-text{background:linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 50%, #ffffff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:0 0 30px rgba(255,255,255,0.5);animation:glow 2s ease-in-out infinite alternate}
+    .page-subtitle{font-size:1.4rem;color:rgba(255,255,255,0.9);text-align:center;margin-bottom:3rem;font-weight:400;text-shadow:0 2px 8px rgba(0,0,0,0.1);line-height:1.6}
     .content-section{padding:4rem 0;background:var(--bg)}
 
     .main-tabs{background:var(--bg);border-radius:15px;box-shadow:0 10px 30px rgba(0,201,167,.1);border:1px solid var(--brd);overflow:hidden}
@@ -342,7 +352,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
     .education-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,201,167,.15);border-color:var(--p)}
     .additional-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
 
-    @media (max-width:768px){.overview-grid{grid-template-columns:1fr;gap:2rem}.skills-grid{grid-template-columns:1fr}.tab-content{padding:2rem 1rem}.page-title{font-size:2rem}}
+    @media (max-width:768px){.overview-grid{grid-template-columns:1fr;gap:2rem}.skills-grid{grid-template-columns:1fr}.tab-content{padding:2rem 1rem}.page-title{font-size:2.2rem}}
   `]
 })
 export class AboutComponent {}

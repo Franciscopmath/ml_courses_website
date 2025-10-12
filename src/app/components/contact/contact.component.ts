@@ -78,7 +78,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
                     </div>
                   </div>
                 </div>
-                <a href="https://www.icloud.com/iclouddrive/09aZZfT4mMCyWxQqvdEGF9QbA#Fco_perez_cv_2025" target="_blank" class="cv-download-btn">
+                <a href="assets/Fco_perez_cv (5) (1).pdf" target="_blank" class="cv-download-btn" download="Francisco_Perez_CV_2025.pdf">
                   <mat-icon>download</mat-icon>
                   <span>Download</span>
                 </a>

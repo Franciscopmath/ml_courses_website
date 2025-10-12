@@ -42,6 +42,9 @@ import { MatMenuModule } from '@angular/material/menu';
           <a routerLink="/projects" routerLinkActive="nav-active" class="nav-link">
             <span>Projects</span>
           </a>
+          <a routerLink="/timeline" routerLinkActive="nav-active" class="nav-link">
+            <span>Journey</span>
+          </a>
           <a routerLink="/contact" routerLinkActive="nav-active" class="nav-link">
             <span>Contact</span>
           </a>
@@ -49,9 +52,10 @@ import { MatMenuModule } from '@angular/material/menu';
         
         <!-- Desktop CTA -->
         <div class="desktop-cta">
-          <a href="https://www.icloud.com/iclouddrive/09aZZfT4mMCyWxQqvdEGF9QbA#Fco_perez_cv_2025" 
-             target="_blank" 
-             class="resume-button">
+          <a href="assets/Fco_perez_cv (5) (1).pdf"
+             target="_blank"
+             class="resume-button"
+             download="Francisco_Perez_CV_2025.pdf">
             <mat-icon>description</mat-icon>
             <span>Resume</span>
           </a>
@@ -87,30 +91,37 @@ import { MatMenuModule } from '@angular/material/menu';
         </div>
 
         <div class="mobile-nav-links">
-          <a routerLink="/home" 
-             routerLinkActive="mobile-active" 
-             class="mobile-nav-link" 
+          <a routerLink="/home"
+             routerLinkActive="mobile-active"
+             class="mobile-nav-link"
              (click)="closeMobileMenu()">
             <mat-icon>home</mat-icon>
             <span>Home</span>
           </a>
-          <a routerLink="/about" 
-             routerLinkActive="mobile-active" 
-             class="mobile-nav-link" 
+          <a routerLink="/about"
+             routerLinkActive="mobile-active"
+             class="mobile-nav-link"
              (click)="closeMobileMenu()">
             <mat-icon>person</mat-icon>
             <span>About</span>
           </a>
-          <a routerLink="/projects" 
-             routerLinkActive="mobile-active" 
-             class="mobile-nav-link" 
+          <a routerLink="/projects"
+             routerLinkActive="mobile-active"
+             class="mobile-nav-link"
              (click)="closeMobileMenu()">
             <mat-icon>work</mat-icon>
             <span>Projects</span>
           </a>
-          <a routerLink="/contact" 
-             routerLinkActive="mobile-active" 
-             class="mobile-nav-link" 
+          <a routerLink="/timeline"
+             routerLinkActive="mobile-active"
+             class="mobile-nav-link"
+             (click)="closeMobileMenu()">
+            <mat-icon>timeline</mat-icon>
+            <span>Journey</span>
+          </a>
+          <a routerLink="/contact"
+             routerLinkActive="mobile-active"
+             class="mobile-nav-link"
              (click)="closeMobileMenu()">
             <mat-icon>email</mat-icon>
             <span>Contact</span>
@@ -118,9 +129,10 @@ import { MatMenuModule } from '@angular/material/menu';
         </div>
 
         <div class="mobile-nav-footer">
-          <a href="https://www.icloud.com/iclouddrive/09aZZfT4mMCyWxQqvdEGF9QbA#Fco_perez_cv_2025" 
-             target="_blank" 
+          <a href="assets/Fco_perez_cv (5) (1).pdf"
+             target="_blank"
              class="mobile-resume-button"
+             download="Francisco_Perez_CV_2025.pdf"
              (click)="closeMobileMenu()">
             <mat-icon>description</mat-icon>
             <span>Download Resume</span>
